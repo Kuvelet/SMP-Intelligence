@@ -1,0 +1,26 @@
+SMP Intelligence offline regression run
+Review date: 2026-11-16
+.NET SDK: 9.0.318
+Test target: net8.0-windows
+Command: dotnet run --project Source\Tests\Tests.csproj --no-restore
+Final exit code: 0
+
+PASS readable prompt exactness and missing/empty/wrong-version/oversized instruction rejection.
+PASS warehouse mapping and physical/external table rejection
+PASS SQL guard: 23 valid queries, 52 rejected queries, imported column mapping.
+PASS: 10 concurrent users, exact HTTP request text and 70KB body, redacted credentials, serialization, failed calls and old replies.
+PASS locked temporary file retries, old content remains visible, complete snapshot published
+PASS locked usage target, ten simultaneous reservations, exactly ten increments
+PASS persistent lock fails within budget, original operation/path survive cleanup failure, target intact
+PASS 250 ms pickup: 8 local jobs, average 128 ms, maximum 261 ms. No API or SQL calls.
+PASS ten simultaneous requests, eleventh waits, matching replies, intact same-user history, shutdown drains all requests, atomic daily limit. No SQL or API calls.
+PASS SQL-only assembly has no guide loader or routing code.
+
+Interpretation:
+This is captured console output from the existing default offline test path.
+The transport and lookup concurrency tests use simulated dependencies.
+"10 concurrent users" is the test's label for simulated request contexts,
+not evidence of ten real employees or a production capacity benchmark.
+Pickup timings measure a local queue test, not complete question latency.
+No live SQL or OpenAI calls were made by this run.
+
