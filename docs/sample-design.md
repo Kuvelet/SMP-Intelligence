@@ -51,11 +51,11 @@ The fixture is embedded in the application. Visitors cannot supply a connection 
 - The inherited guard checks known column names but does not fully resolve every SQL binding. A valid-looking column on the wrong table can pass validation and then fail at execution. The API reports this as an execution error rather than claiming it was rejected before execution.
 - SQLite and SQL Server differ in types, comparison rules, functions and query planning. The sample deliberately supports less SQL; it is not a general T-SQL compatibility layer.
 - The 100-row display cap does not bound all database work. The small, fixed fixture and restricted single-query shape keep this local demonstration limited. A production service needs appropriate database permissions, workload budgets, cancellation, authentication and deployment controls.
-- The offline planner recognizes selected examples and sample identifiers. It does not measure AI reasoning or natural-language accuracy. Replacing it with a model would require a separate integration and evaluation effort.
+- The offline planner requires the entire question to match a supported example form. Additional filters, sorting, exclusions, and combined requests return clarification without executing SQL. It also rejects invalid or oversized follow-up part lists instead of using only part of them. [Supported question forms](../sample/README.md). This does not measure AI reasoning or natural-language accuracy. Replacing it with a model would require a separate integration and evaluation effort.
 - `Price` uses SQLite REAL for a simple display example. Financial calculations would require an explicit decimal or integer-minor-unit design.
 
 ## Verification
 
-The public suite contains 105 test cases. It checks accepted and blocked SQL, normalization, reference lookups, expected vehicle records, distinct-part counting, empty results, forged follow-up context, validation before execution, portable SQL restrictions, result truncation, concurrent requests and HTTP errors.
+The public suite contains 136 test cases. It checks accepted and blocked SQL, normalization, reference lookups, expected vehicle records, distinct-part counting, empty results, forged follow-up context, validation before execution, portable SQL restrictions, result truncation, concurrent requests and HTTP errors.
 
 Run `dotnet test SmpSample.slnx` from the root. The [GitHub Actions workflow](../.github/workflows/sample-ci.yml) restores pinned dependencies and runs the suite on Windows, Linux and macOS. Passing these tests demonstrates the checked cases, not a comprehensive security assessment or employee adoption.

@@ -21,6 +21,20 @@ public sealed class HttpTests : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Theory]
+    [InlineData("Which parts match DEMO-OE-1001 under $40?")]
+    [InlineData("Which vehicles do these parts fit for Example Motors only?")]
+    public async Task Unsupported_conditions_return_clarification_without_rows(string question)
+    {
+        var response = await client.PostAsJsonAsync("/api/lookup", new { question, previousParts = new[] { "DEMO-PART-101" } });
+        response.EnsureSuccessStatusCode();
+        var body = await response.Content.ReadFromJsonAsync<JsonElement>();
+        Assert.Equal("clarify", body.GetProperty("status").GetString());
+        Assert.Contains("whole question", body.GetProperty("message").GetString());
+        Assert.Equal(0, body.GetProperty("tables").GetArrayLength());
+        Assert.Equal(0, body.GetProperty("parts").GetArrayLength());
+    }
+
+    [Theory]
     [InlineData("DELETE FROM dbo.Interchange")]
     [InlineData("SELECT * FROM sys.tables")]
     [InlineData("SELECT * FROM dbo.Interchange; DROP TABLE dbo.Interchange")]

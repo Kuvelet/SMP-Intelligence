@@ -67,7 +67,7 @@ Open **http://127.0.0.1:5080**. No API key or SQL Server installation is require
 
 ## Evidence and next step
 
-The public suite contains **105 automated test cases** covering supported and prohibited SQL, expected catalog records, follow-ups, validation before execution, and HTTP behavior. Run `dotnet test SmpSample.slnx`. [Tests](sample/Smp.Sample.Tests) · [CI results](https://github.com/Kuvelet/SMP-Intelligence/actions/workflows/sample-ci.yml)
+The public suite contains **136 automated test cases** covering supported and prohibited SQL, expected catalog records, follow-ups, validation before execution, and HTTP behavior. Run `dotnet test SmpSample.slnx`. [Tests](sample/Smp.Sample.Tests) · [CI results](https://github.com/Kuvelet/SMP-Intelligence/actions/workflows/sample-ci.yml)
 
 These checks establish specific software behaviors; they do not establish the accuracy of every AI-generated answer. The next priority is a documented answer-quality evaluation against reference results, followed by a limited employee pilot to measure usefulness and task completion. [Validation evidence and evaluation plan](docs/validation.md)
 

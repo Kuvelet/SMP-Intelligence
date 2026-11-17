@@ -27,7 +27,15 @@ If port 5080 is already in use, stop the earlier sample process before starting 
 5. Open **Test the SQL rules**, choose **Try changing records**, then **Validate & run**. The DELETE is blocked before execution.
 6. Try `DEMO-OE-9999` or `DEMO-PART-108` in the lookup. Both produce an empty result for different reasons: an unknown reference and a part without recorded fitment.
 
-The question planner uses deterministic examples. It accepts sample references (`DEMO-OE-1001` through `DEMO-OE-1007`), sample parts (`DEMO-PART-101` through `DEMO-PART-108`), vehicle follow-ups, and “Count distinct parts by make.” It asks for clarification for other questions. **It is not connected to a live AI model.**
+The question planner accepts complete example questions, not arbitrary natural language. **It is not connected to a live AI model.** Supported forms are:
+
+- `DEMO-OE-1001` or `Which parts match DEMO-OE-1001?`
+- `DEMO-PART-101` or `Show applications for DEMO-PART-101`
+- Up to eight distinct part numbers separated by commas or `and`, optionally preceded by `Show applications for`
+- `Which vehicles do these parts fit?`, `Which vehicles do these fit?`, `Which vehicles fit?`, or `What applications does it fit?` after a successful lookup
+- `Count distinct parts by make`
+
+Letter case, surrounding whitespace, and an optional final question mark are accepted. Other wording or additional conditions require clarification before any SQL executes. For example, `Which parts match DEMO-OE-1001 under $40?` returns an explanation with no records, because price filters are unsupported. The sample never treats that question as an unfiltered reference lookup. The fictional catalog contains references `DEMO-OE-1001` through `DEMO-OE-1007` and parts `DEMO-PART-101` through `DEMO-PART-108`.
 
 ## Run the tests
 
@@ -37,7 +45,7 @@ From the repository root:
 dotnet test SmpSample.slnx
 ```
 
-The suite has 105 test cases, including the prototype's 75 SQL validation cases with fictional identifiers, real database result checks, multi-query rejection, follow-up handling, concurrency and HTTP responses. CI runs the same suite on Windows, Linux and macOS.
+The suite has 136 test cases, including the prototype's 75 SQL validation cases with fictional identifiers, real database result checks, multi-query rejection, follow-up handling, concurrency and HTTP responses. CI runs the same suite on Windows, Linux and macOS.
 
 For a reproducible restore using the committed dependency lock files:
 

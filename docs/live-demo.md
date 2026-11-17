@@ -37,7 +37,7 @@ The browser build is retained for reference. The main README and portfolio now f
 
 - The real C# validator can be exercised through the UI, including rejecting writes and unsupported tables.
 - Reference lookups, vehicle follow-ups and distinct-part counts run against real SQLite queries over fictional records.
-- The five browser database tests check the same expected rows, query-only mode, empty-result headers and display cap as the local executor. The existing 105 C# tests remain in place.
+- The five browser database tests check the same expected rows, query-only mode, empty-result headers and display cap as the local executor. The existing 136 C# tests remain in place.
 
 The offline question planner is intentionally limited to example questions and sample identifiers. This demo does not evaluate a live AI model.
 

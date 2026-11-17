@@ -12,21 +12,29 @@ public static partial class ExamplePlanner
         if (question.Length is < 1 or > 500)
             return new("Enter a question between 1 and 500 characters.", []);
 
-        var references = ReferencePattern().Matches(question).Select(m => m.Value.ToUpperInvariant()).Distinct().ToArray();
-        if (references.Length > 1)
-            return new("Use one reference number at a time in this sample.", []);
-        if (references.Length == 1)
+        // Match the whole question, not identifiers or keywords inside arbitrary prose.
+        // Otherwise an unsupported filter could silently become an unfiltered lookup.
+        var reference = ReferenceQuestionPattern().Match(question);
+        if (reference.Success)
             return new("Matching catalog parts. Review the notes before deciding whether a part fits.", [new("Matching parts", $"""
                 SELECT [Part Number], [Interchange Name], Price, Note
-                FROM dbo.Interchange WHERE [Interchange Name] = N'{references[0]}'
+                FROM dbo.Interchange WHERE [Interchange Name] = N'{reference.Groups["reference"].Value.ToUpperInvariant()}'
                 ORDER BY [Part Number]
                 """)]);
 
-        var parts = PartPattern().Matches(question).Select(m => m.Value.ToUpperInvariant()).Distinct().ToArray();
-        var fitmentQuestion = FitmentPattern().IsMatch(question);
-        if (fitmentQuestion && parts.Length == 0)
-            parts = (request.PreviousParts ?? []).Where(p => p is not null && ExactPartPattern().IsMatch(p))
-                .Select(p => p.ToUpperInvariant()).Distinct().Take(8).ToArray();
+        var application = ApplicationQuestionPattern().Match(question);
+        var followUp = FollowUpQuestionPattern().IsMatch(question);
+        string[] parts = [];
+        if (application.Success)
+            parts = PartPattern().Matches(application.Groups["parts"].Value)
+                .Select(m => m.Value.ToUpperInvariant()).Distinct().ToArray();
+        else if (followUp)
+        {
+            var previousParts = request.PreviousParts ?? [];
+            if (previousParts.Any(p => p is null || !ExactPartPattern().IsMatch(p)))
+                return new("The previous part list is invalid. Start a new lookup with a sample reference.", []);
+            parts = previousParts.Select(p => p.ToUpperInvariant()).Distinct().ToArray();
+        }
         if (parts.Length > 8) return new("Use up to eight sample part numbers at a time.", []);
         if (parts.Length > 0)
         {
@@ -38,22 +46,32 @@ public static partial class ExamplePlanner
                 """)]);
         }
 
-        if (fitmentQuestion) return new("Which part should I look up? Start with DEMO-OE-1001 or include a DEMO-PART number.", []);
-        if (question.Equals("Count distinct parts by make", StringComparison.OrdinalIgnoreCase))
+        if (followUp) return new("Which part should I look up? Start with DEMO-OE-1001 or enter a DEMO-PART number.", []);
+        if (CountQuestionPattern().IsMatch(question))
             return new("Each part is counted once per make, even when it has multiple model-year records.", [new("Parts by make", """
                 SELECT Make, COUNT(DISTINCT Part) AS Parts FROM dbo.ApplicationViO
                 GROUP BY Make ORDER BY Parts DESC, Make
                 """)]);
 
-        return new("This offline planner supports the example lookups shown above, DEMO-OE references, DEMO-PART numbers, and vehicle follow-ups. It is not a live AI model.", []);
+        return new("This offline sample could not match the whole question to a supported example. " +
+            "Extra filters, sorting, exclusions, and combined requests are not supported; no lookup was run. " +
+            "Choose an example, enter a sample reference or part number, or use 'Show applications for DEMO-PART-101'. " +
+            "It is not a live AI model.", []);
     }
 
-    [GeneratedRegex(@"\bDEMO-OE-\d{4}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
-    private static partial Regex ReferencePattern();
-    [GeneratedRegex(@"\bDEMO-PART-\d{3}\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    private const RegexOptions Options = RegexOptions.IgnoreCase | RegexOptions.CultureInvariant;
+    private const string Part = @"DEMO-PART-[0-9]{3}";
+
+    [GeneratedRegex(@"\A(?:Which parts match\s+)?(?<reference>DEMO-OE-[0-9]{4})\??\z", Options)]
+    private static partial Regex ReferenceQuestionPattern();
+    [GeneratedRegex(@"\A(?:Show applications for\s+)?(?<parts>" + Part + @"(?:(?:\s*,\s*|\s+and\s+)" + Part + @")*)\??\z", Options)]
+    private static partial Regex ApplicationQuestionPattern();
+    [GeneratedRegex(@"\A(?:Which vehicles (?:do these (?:parts )?)?fit|What applications does it fit)\??\z", Options)]
+    private static partial Regex FollowUpQuestionPattern();
+    [GeneratedRegex(@"\ACount distinct parts by make\??\z", Options)]
+    private static partial Regex CountQuestionPattern();
+    [GeneratedRegex(Part, Options)]
     private static partial Regex PartPattern();
-    [GeneratedRegex(@"\ADEMO-PART-[0-9]{3}\z", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
+    [GeneratedRegex(@"\A" + Part + @"\z", Options)]
     private static partial Regex ExactPartPattern();
-    [GeneratedRegex(@"\b(vehicle|vehicles|fit|fits|fitment|applications)\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)]
-    private static partial Regex FitmentPattern();
 }

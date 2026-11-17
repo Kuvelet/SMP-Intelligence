@@ -72,6 +72,68 @@ public sealed class PipelineTests
     }
 
     [Theory]
+    [InlineData("Which parts match DEMO-OE-1001 under $40?")]
+    [InlineData("Under $40, which parts match DEMO-OE-1001?")]
+    [InlineData("Which parts match DEMO-OE-1001 sorted by price?")]
+    [InlineData("Which parts match DEMO-OE-1001 except DEMO-PART-102?")]
+    [InlineData("Do not look up DEMO-OE-1001")]
+    [InlineData("DEMO-OE-1001 and DEMO-OE-1002")]
+    [InlineData("DEMO-OE-1001 and DEMO-PART-101")]
+    [InlineData("DEMO-OE-1001\nunder $40")]
+    [InlineData("DEMO-OE-1001xyz")]
+    [InlineData("Show applications for DEMO-PART-101 from 2020 onward")]
+    [InlineData("DEMO-PART-101 for Example Motors only")]
+    [InlineData("DEMO-PART-101 and invalid-part")]
+    [InlineData("Which vehicles do these parts fit in Canada?")]
+    [InlineData("Which vehicles do these parts fit? Only show the newest year.")]
+    [InlineData("What applications does it fit with VIO above 1000?")]
+    [InlineData("Count distinct parts by make for Example Motors")]
+    [InlineData("Which parts match DEMO-OE-1001? Count distinct parts by make")]
+    public void Extra_conditions_or_partial_matches_request_clarification_without_executing(string question)
+    {
+        var executor = new SpyExecutor();
+        var result = new LookupService(new QueryPipeline(executor)).Ask(new(question, ["DEMO-PART-101"]));
+        Assert.Equal("clarify", result.Status);
+        Assert.Contains("whole question", result.Message);
+        Assert.Empty(result.Tables);
+        Assert.Empty(result.Parts);
+        Assert.Equal(0, executor.Calls);
+    }
+
+    [Theory]
+    [InlineData("  which parts match demo-oe-1001?  ", 2)]
+    [InlineData("DEMO-PART-101", 3)]
+    [InlineData("Show applications for DEMO-PART-101?", 3)]
+    [InlineData("DEMO-PART-101, DEMO-PART-102", 5)]
+    [InlineData("Show applications for DEMO-PART-101 and DEMO-PART-102", 5)]
+    [InlineData("Which vehicles do these parts fit?", 5)]
+    [InlineData("Which vehicles do these fit?", 5)]
+    [InlineData("Which vehicles fit?", 5)]
+    [InlineData("what applications does it fit?", 5)]
+    [InlineData("Count distinct parts by make?", 3)]
+    public void Complete_supported_questions_still_return_expected_records(string question, int rows)
+    {
+        var reply = Service().Ask(new(question, ["DEMO-PART-101", "DEMO-PART-102"]));
+        Assert.Equal("ok", reply.Status);
+        Assert.Equal(rows, Assert.Single(reply.Tables).Rows.Count);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Follow_up_context_is_rejected_instead_of_partially_used(bool tooMany)
+    {
+        var parts = tooMany
+            ? Enumerable.Range(101, 9).Select(n => $"DEMO-PART-{n}").ToArray()
+            : new[] { "DEMO-PART-101", "invalid-part" };
+        var executor = new SpyExecutor();
+        var reply = new LookupService(new QueryPipeline(executor)).Ask(new("Which vehicles fit?", parts));
+        Assert.Equal("clarify", reply.Status);
+        Assert.Empty(reply.Tables);
+        Assert.Equal(0, executor.Calls);
+    }
+
+    [Theory]
     [InlineData("DELETE FROM dbo.Interchange")]
     [InlineData("SELECT TOP (1) Part FROM dbo.ApplicationViO")]
     public void A_rejected_second_query_prevents_the_entire_plan_from_executing(string second)
