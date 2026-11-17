@@ -31,7 +31,7 @@ The SQLite package version and SHA-512 integrity are committed in `scripts/brows
 
 The [Live demo workflow](../.github/workflows/live-demo.yml) tests the shared C# code and browser database adapter, builds the WebAssembly app, and deploys the output to GitHub Pages. The repository's Pages source is **GitHub Actions**. The deployment uses GitHub's generated Pages token; there are no stored hosting credentials or model secrets.
 
-The live link is also listed in the main README and the first card on [Can Kuvelet's portfolio](https://kuvelet.github.io/portfolio/).
+The browser build is retained for reference. The main README and portfolio now focus on the original application recording and the locally runnable C# sample.
 
 ## What the demo establishes
 

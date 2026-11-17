@@ -1,6 +1,6 @@
 # Run the sample
 
-**[Try it online](https://kuvelet.github.io/SMP-Intelligence/)** to use the demo immediately. No installation or account is required. The instructions below are for running and developing the local server version.
+Run and inspect the public C# sample locally. This guide covers setup, example workflows, tests, and where to read the code.
 
 This is a small C# application you can run and inspect. It uses a fictional automotive catalog, a validator extracted from SMP Intelligence, a local SQLite database, and a browser interface.
 

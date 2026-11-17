@@ -1,6 +1,6 @@
 # SMP Intelligence architecture and decisions
 
-This document describes the implemented Windows desktop prototype. A web application and public access are future proposals.
+This document describes the implemented Windows desktop prototype. The separate public code sample demonstrates selected behavior with fictional data. An employee web application with company sign-in remains a future proposal.
 
 ## Components
 

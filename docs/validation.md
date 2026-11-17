@@ -32,13 +32,15 @@ The SQL fixtures are targeted regression cases, not a comprehensive security ass
 
 [Captured test output](../evidence/offline-test-output.txt)
 
-## Interface preview provenance
+## Recording and screenshot provenance
 
-The screenshots were rendered from an isolated copy of the actual client source. A capture-only harness loaded synthetic reply objects into the existing presentation methods. It did not call the backend, SQL Server, or OpenAI.
+The main GIF and the `smp.chat.png` and `smp.results.png` screenshots come from a continuous recording of the installed Windows prototype on November 17, 2026, using its real OpenAI and SQL Server connection. The original interface and logo are retained. Company part numbers, internal usernames, and Canada, Mexico, US, and VIO values are blurred after capture.
 
-The capture copy changed the contact footer, set an explicit synthetic-preview status, and captured the content area of the window. The original application source was not edited for the screenshots. Generated SQL and model exchanges visible in the preview are prepared illustrations.
+The technical walkthrough combines excerpts from that recording, a separately recorded live SQL inspection, and public source-code excerpts. The internal physical table mapping in the SQL view is also blurred. Idle pauses are trimmed; the footage is not a response-time benchmark.
 
-The images demonstrate the interface and workflow. They are not end-to-end answer-quality evidence.
+The older `smp.sql.png` asset is a separately prepared illustration with a fictional query and neutral branding. It is not part of the current live recording. [Full media provenance](../assets/README.md)
+
+The recording demonstrates an observed workflow, not a systematic answer-quality evaluation.
 
 ## Next evaluation
 

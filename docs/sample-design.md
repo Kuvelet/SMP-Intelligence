@@ -27,7 +27,7 @@ The pipeline preserves an important original behavior: **validate the whole plan
 
 The browser sample is a portfolio demonstration, not the planned employee web application. It has no company sign-in, shared worker queue, model accuracy evaluation or production deployment configuration.
 
-An additional [public live demo](https://kuvelet.github.io/SMP-Intelligence/) now compiles the same core C# files into WebAssembly. It uses the shared interface and fictional fixture, replacing the native SQLite transport with sql.js in the browser. This version is deployed as static files on GitHub Pages; visitors need no local server. [Hosting details and browser-specific limits](live-demo.md)
+A retained browser build compiles the same core C# files into WebAssembly. It uses the shared interface and fictional fixture, replacing the native SQLite transport with sql.js in the browser. This version is deployed as static files on GitHub Pages; visitors need no local server. [Hosting details and browser-specific limits](live-demo.md)
 
 ## Data provenance
 
