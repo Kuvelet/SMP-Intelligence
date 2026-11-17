@@ -1,0 +1,68 @@
+{
+  "description": "Local original source fingerprints and the sanitized public extraction. No internal source history is included. Public hashes are over UTF-8 LF files.",
+  "files": [
+    {
+      "original_path": "Worker/SqlGuard.cs",
+      "public_path": "src/Smp.Core/SqlGuard.cs",
+      "original_sha256": "53bd2cb6fc03e69761ae00239e425428b1e2fe6c5280eba0f4dbaf8c5476c1c4",
+      "public_sha256": "113a1dbe59661fb8c11dfbfe7c2f1c122f75488b9a2cfa38f3d42f5cb6a7657e",
+      "changes": "Database and normalized-column identifiers generalized."
+    },
+    {
+      "original_path": "Worker/RequestDiagnostics.cs",
+      "public_path": "src/Smp.Core/RequestDiagnostics.cs",
+      "original_sha256": "954a7cac711823415e9b5c45712744a5133ca09c78d332e2ce4ca1d7a0d36389",
+      "public_sha256": "954a7cac711823415e9b5c45712744a5133ca09c78d332e2ce4ca1d7a0d36389",
+      "changes": "No behavioral changes; line endings normalized."
+    },
+    {
+      "original_path": "Worker/PlanningKnowledge.cs",
+      "public_path": "src/Smp.Core/PlanningKnowledge.cs",
+      "original_sha256": "e863d28fe12a4baabade91bca1206cd7c89226127a262c2d8e792f75d8273de0",
+      "public_sha256": "bf19a59e58520165c3e020e132250d7dcf66f7f7a7620cce909a1a5f6c2948ce",
+      "changes": "Instruction version identifies the new fictional review fixture, not the private instruction file."
+    },
+    {
+      "original_path": "Worker/Database.cs",
+      "public_path": "src/Smp.Core/Database.cs",
+      "original_sha256": "2abec4deb39230908bfa101686d87ee0e2f5f194d29332affc70bc4f971df707",
+      "public_sha256": "d929487805cf9adbb5a0b2780e440cb2f0a511a56167be2393bcf25e0937eec2",
+      "changes": "Company database and physical mappings generalized; connection string replaced with required configuration; optional connection factory permits verification of validation before connection creation. Execution and display logic retained."
+    },
+    {
+      "original_path": "Worker/Lookup.cs",
+      "public_path": "src/Smp.Core/Lookup.cs",
+      "original_sha256": "4977aab4dd39d78afeefe63ad02c75d1b2a6224c8faae9873e71545941c83bc0",
+      "public_sha256": "28986c81fded5447ea296c8db667b954a1bcf282dd1cddabfbba6006a74424d8",
+      "changes": "Original Responses API planner, parsing, trace capture, usage reservation and answer formatting retained. HTTP transport, schema, key and instruction readers are injectable for offline tests. Credential lookup uses explicit review configuration rather than the company Windows credential."
+    },
+    {
+      "original_path": "Common/Protocol.cs",
+      "public_path": "src/Smp.Core/Contracts.cs",
+      "original_sha256": "8a7f22ad3f60dd7368b45910557d518852685af5723f405f5a83c30f1ec62fed",
+      "public_sha256": "1e0411e84da21823dc27697c2f71fe0d203c0ade2b8dc6f7c880ba70f7317931",
+      "changes": "Retained answer, table and trace contracts plus the two settings consumed by Lookup. Omitted network queue identities and deployment settings; no model selected by default."
+    },
+    {
+      "original_path": "Common/Protocol.cs",
+      "public_path": "src/Smp.Core/QueueFiles.cs",
+      "original_sha256": "8a7f22ad3f60dd7368b45910557d518852685af5723f405f5a83c30f1ec62fed",
+      "public_sha256": "271d868824c16307e71b0ebf5f2c82822680612ba5eebce645933c577cd687ac",
+      "changes": "Extracted only JSON persistence, bounded file retries and atomic replacement used by usage accounting. Company queue, identity and access rules omitted."
+    },
+    {
+      "original_path": "Client/Transparency.cs",
+      "public_path": "source-excerpts/Desktop/Transparency.cs",
+      "original_sha256": "e82eaa3c7371f7f72b6ae3fb53e413a2a3e5644692e8cd19af852a46fed42dce",
+      "public_sha256": "e82eaa3c7371f7f72b6ae3fb53e413a2a3e5644692e8cd19af852a46fed42dce",
+      "changes": "Original desktop source excerpt; not compiled as a standalone WPF app. Line endings normalized."
+    },
+    {
+      "original_path": "Client/TableFilter.cs",
+      "public_path": "source-excerpts/Desktop/TableFilter.cs",
+      "original_sha256": "fdfc2080f5cb73728c22f63eb631a3b8516ccf1c0e5a3a03d0b0b67d29b9251e",
+      "public_sha256": "567aa4b8acb9814021ef4fef9823ed608d7f3e7bf281a02b467a45cc36f36272",
+      "changes": "Original desktop source excerpt linked into the review library and tested; line endings normalized."
+    }
+  ]
+}

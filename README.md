@@ -1,74 +1,69 @@
 # SMP Intelligence
 
-**Ask questions about automotive parts in everyday language.**
+**A conversational automotive catalog tool built around real business workflows.**
 
-I built SMP Intelligence to make automotive catalog questions easier to answer without writing SQL. The Windows prototype lets users find matching parts, explore which vehicles they fit, and inspect the database queries behind each result.
-
-The existing workflow involved Microsoft Access, SQL Server, and Excel. I combined automotive catalog knowledge with C#/.NET development and OpenAI integration to bring supported lookups and follow-up questions into one application.
+I built SMP Intelligence to help users find matching parts and vehicle applications without writing SQL. The existing workflow involved Microsoft Access, SQL Server, and Excel. The Windows application brings supported catalog questions, follow-ups, result tables, and query inspection into one place.
 
 **Status:** Working prototype developed for internal use and demonstrated to stakeholders.
 
-**Original application:** C# · .NET 8 · WPF · SQL Server · OpenAI API
+**Original stack:** C# · .NET 8 · WPF · SQL Server · OpenAI API
 
-**[Watch the two-minute walkthrough →](https://kuvelet.github.io/portfolio/walkthrough/)** · **[Explore the runnable C# sample →](sample/README.md)**
+This repository is a case study with **sanitized original source and executable tests**. It documents the implementation behind the recorded application; it is not a separately rebuilt demo or a downloadable company deployment.
+
+## The application
+
+![The real SMP application answering a parts question and a vehicle follow-up, with sensitive values blurred](assets/smp-demo.gif?v=live-recording-4)
+
+The recording asks “What parts do we have that cross to OE number 12692048?” and then “what applications does it fit?” It shows the actual interface and live responses. Company part numbers, usernames, and Canada/Mexico/US/VIO values are blurred. [Recording details](assets/README.md)
+
+[Watch the two-minute walkthrough](https://kuvelet.github.io/portfolio/walkthrough/) · [Follow the original source](docs/source-guide.md)
 
 ## My contribution
 
-I initiated and developed the prototype, applying my automotive catalog knowledge throughout the project:
+I initiated and developed the prototype, combining automotive catalog knowledge with application development:
 
-- Defined the supported catalog workflows and directed implementation and testing.
-- Built the desktop experience for questions, follow-ups, result tables, and SQL inspection.
-- Connected AI query planning to database retrieval, with validation before execution.
+- Defined supported catalog workflows and directed implementation and testing.
+- Built the desktop experience for questions, follow-ups, tables, and SQL inspection.
+- Connected OpenAI query planning to SQL Server retrieval, with validation before execution.
 - Added request tracking, usage controls, and Windows installation and update tools.
 
 I used AI coding assistance while defining requirements, directing iterations, and reviewing application behavior.
 
-## See the real application
+## How it works
 
-![SMP Intelligence performing a parts lookup and vehicle follow-up, with sensitive values blurred](assets/smp-demo.gif?v=live-recording-4)
+The application sends the question, recent questions, catalog instructions, and approved schema to OpenAI. The model returns a structured plan: query, clarify, or unsupported. Proposed queries pass through an independent SQL validator before the database runs them. Results are formatted locally; database result rows are not sent back to the model in this implementation.
 
-*Recorded from the working Windows prototype with its original logo and live responses. Company part numbers, usernames, and Canada/Mexico/US/VIO values are blurred. [Recording details](assets/README.md)*
+Three engineering decisions matter:
 
-The recorded workflow starts with “What parts do we have that cross to OE number 12692048?” and follows with “what applications does it fit?” Users can inspect both the returned records and the proposed SQL. The narrated walkthrough also shows the public code and tests.
+- **Validate the whole plan first.** If a second query is invalid, the first query must not execute either.
+- **Make answers inspectable.** Users can examine proposed SQL, result tables, and model exchanges. Authentication headers are redacted from captured requests.
+- **Work within the existing Windows environment.** WPF and shared-folder messaging fit the prototype's environment, with request IDs, bounded retries, and application update checks.
 
-## Engineering decisions
+[Architecture and tradeoffs](docs/architecture.md)
 
-**Validate the entire plan before executing it.** The model proposes SQL; a parser checks permitted operations, tables, and syntax. Every query in a plan must pass validation before the first database call. The public tests verify that an invalid second query prevents either query from running.
+## Inspect the implementation
 
-**Keep answers inspectable.** SQL Server supplies the records, which the application formats locally. Users can review result tables, proposed queries, and model exchanges. Database result rows are not sent back to the model in this implementation.
+| Start here | What it demonstrates |
+| --- | --- |
+| [AI planning and answer handling](src/Smp.Core/Lookup.cs) | Original Responses API request, structured plan parsing, context, trace capture, and local result summaries |
+| [SQL validator](src/Smp.Core/SqlGuard.cs) | Parser-based allowlist, approved tables, column normalization, and logical-to-physical mapping |
+| [Database execution](src/Smp.Core/Database.cs) | Whole-plan validation before connection creation, SQL Server execution, limits, and display rules |
+| [Desktop transparency](source-excerpts/Desktop/Transparency.cs) | Original code behind the SQL and model-exchange views |
+| [Tests](tests/Smp.Core.Tests) | Repeatable checks against the extracted original components |
 
-**Design for the existing Windows environment.** The prototype uses WPF and shared-folder messaging, with request IDs, bounded file retries, and application update checks. This fits the current environment while leaving authentication and an HTTP service as future web-development work.
+Company connections, internal instructions, operational history, and deployment infrastructure are excluded. The source guide identifies retained code, sanitization changes, and test-only substitutes. No company records were used for the test fixtures.
 
-[Architecture, tradeoffs, and limitations](docs/architecture.md)
+## Run the checks
 
-## Public code sample
-
-The repository includes a runnable sample for inspecting and testing selected engineering behavior without company access.
-
-| | Original prototype | Public sample |
-| --- | --- | --- |
-| Planning | OpenAI-generated query plans | Offline example planner |
-| Interface and data | WPF and internal SQL Server catalog | Local browser interface and fictional SQLite catalog |
-| Source | Internal application | Adapted query validator, sample pipeline, and tests |
-
-The complete internal application and company database are not included. [What was extracted and what changed](docs/sample-design.md)
-
-With the **.NET 10 SDK** installed:
+With the .NET 10 SDK installed:
 
 ```sh
-git clone https://github.com/Kuvelet/SMP-Intelligence.git
-cd SMP-Intelligence
-dotnet run --project sample/Smp.Sample.Web
+dotnet restore SmpCaseStudy.slnx --locked-mode
+dotnet test SmpCaseStudy.slnx --no-restore --configuration Release
 ```
 
-Open **http://127.0.0.1:5080**. No API key or SQL Server installation is required.
+The **106 offline test cases** cover supported and prohibited SQL, AI request construction and response handling, rejection before database access, trace isolation and credential redaction, result display rules, and concurrent usage accounting. No API key, SQL Server installation, or company access is required. [CI results](https://github.com/Kuvelet/SMP-Intelligence/actions/workflows/source-ci.yml)
 
-[Setup and example workflows](sample/README.md) · [Query validator](sample/Smp.Sample.Core/SqlGuard.cs) · [Execution pipeline](sample/Smp.Sample.Core/QueryPipeline.cs)
-
-## Evidence and next step
-
-The public suite contains **136 automated test cases** covering supported and prohibited SQL, expected catalog records, follow-ups, validation before execution, and HTTP behavior. Run `dotnet test SmpSample.slnx`. [Tests](sample/Smp.Sample.Tests) · [CI results](https://github.com/Kuvelet/SMP-Intelligence/actions/workflows/sample-ci.yml)
-
-These checks establish specific software behaviors; they do not establish the accuracy of every AI-generated answer. The next priority is a documented answer-quality evaluation against reference results, followed by a limited employee pilot to measure usefulness and task completion. [Validation evidence and evaluation plan](docs/validation.md)
+These checks establish specific software behaviors, not live-model answer accuracy or employee adoption. The next evidence to collect is an answer-quality evaluation against reference results, followed by a limited employee pilot. [Validation evidence and limits](docs/validation.md)
 
 Built by [Can Kuvelet](https://kuvelet.github.io/portfolio/).

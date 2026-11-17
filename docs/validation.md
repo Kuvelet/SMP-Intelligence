@@ -1,10 +1,26 @@
 # Validation results and evaluation plan
 
-## Runnable public sample
+## Current public original-source tests
 
-The repository now includes a separately runnable .NET 10 test suite: `dotnet test SmpSample.slnx`. It has 136 cases, including the prototype's 75 SQL validation fixtures with fictional identifiers and additional checks against actual in-memory sample records. [Sample design and limitations](sample-design.md)
+Run `dotnet restore SmpCaseStudy.slnx --locked-mode` and `dotnet test SmpCaseStudy.slnx --no-restore --configuration Release` with the .NET 10 SDK. The suite contains **106 cases**. [Source and sanitization guide](source-guide.md) · [CI workflow](../.github/workflows/source-ci.yml)
 
-The [CI workflow](../.github/workflows/sample-ci.yml) runs this public suite on Windows, Linux and macOS. The historical run below covers the original internal prototype and includes features deliberately omitted from the portable sample.
+The suite runs the extracted original components, using fictional schemas and in-memory HTTP responses. No live model, SQL Server, company connection, or API key is used.
+
+| Area | Evidence from the public suite |
+| --- | --- |
+| SQL guard | 23 supported and 52 prohibited SQL cases, plus 5 normalization and malformed-input checks |
+| AI planning | Original structured request includes the full question and last three prior questions; parses returned plans and token usage |
+| Response failures | Incomplete responses, malformed JSON, invalid action/query combinations, and HTTP errors are rejected or preserved as failure evidence |
+| Execution order | An invalid second query prevents the connection factory from being called; a valid plan reaches that boundary |
+| Schema mapping | Approved logical tables map to generalized physical names; direct physical references are rejected |
+| Result display | Rows are preserved, explicitly requested empty columns remain, and empty results retain headers |
+| Trace isolation | Concurrent requests retain their own large bodies and responses; authentication headers and cookies are redacted |
+| Usage and files | Concurrent reservations respect the configured cap using the original JSON persistence and atomic replacement code |
+| Instructions and desktop search | Missing, empty, oversized, and wrong-version instructions are rejected; table-search wildcard characters remain literal |
+
+The HTTP transport returns controlled responses; this verifies request construction and response handling, not whether a live model writes correct SQL. Database tests stop at the connection boundary; they do not execute T-SQL or establish SQL Server result correctness. The original company application, full WPF client, shared-folder deployment, and live-model performance are outside this public test run.
+
+The earlier 136-case suite belonged to the retired lightweight sample. Its SQLite, deterministic-planner, and HTTP-server checks are not counted as evidence for this extraction. The video retains the historical 105-test snapshot shown when it was recorded.
 
 ## Observed offline run
 

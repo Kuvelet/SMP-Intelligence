@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Smp.Core/Smp.Core.csproj" />
+  <Project Path="tests/Smp.Core.Tests/Smp.Core.Tests.csproj" />
+</Solution>

@@ -1,6 +1,6 @@
 # SMP Intelligence architecture and decisions
 
-This document describes the implemented Windows desktop prototype. The separate public code sample demonstrates selected behavior with fictional data. An employee web application with company sign-in remains a future proposal.
+This document describes the implemented Windows desktop prototype. The public repository contains a sanitized extraction of the original backend and selected desktop source, with offline tests. An employee web application with company sign-in remains a future proposal.
 
 ## Components
 
@@ -74,9 +74,9 @@ The manifest and release location remain part of the trust boundary. A checksum 
 | Local result presentation | Gives users inspectable database records | A natural-language interpretation can still be wrong |
 | Stored request and response traces | Supports debugging and transparent review | Records need deliberate access and retention decisions |
 
-## Public code sample
+## Public source extraction
 
-The [runnable sample](../sample/README.md) extracts the query validator into a standalone C# application with an offline planner, fictional records, SQLite, and a local browser interface. Its scope and differences are documented in [sample design](sample-design.md). This is distinct from the proposed internal web application below.
+The [source guide](source-guide.md) maps the retained original planner, validator, database code, and desktop excerpts. The compiled public project is a review library with offline tests, not a hosted demo or a complete employee application. The shared-folder worker and deployment infrastructure described above are documented as original-system behavior and are not included in the public build.
 
 ## Proposed web evolution
 
