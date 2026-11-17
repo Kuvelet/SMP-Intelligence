@@ -10,9 +10,9 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 ## See the Windows interface
 
-![Live SMP Intelligence recording showing an OE lookup and an applications follow-up with company part numbers blurred](assets/smp-demo.gif?v=live-recording-3)
+![Live SMP Intelligence recording showing an OE lookup and an applications follow-up with company part numbers and vehicle counts blurred](assets/smp-demo.gif?v=live-recording-4)
 
-*Recorded directly from the working Windows prototype, with the original logo and live responses. Company part numbers and internal usernames are blurred. Idle pauses are trimmed; the remaining footage plays at normal speed.*
+*Recorded directly from the working Windows prototype, with the original logo and live responses. Company part numbers, internal usernames, and the Canada, Mexico, US, and VIO values are blurred. Idle pauses are trimmed; the remaining footage plays at normal speed.*
 
 ## Try the runnable code sample
 
@@ -38,7 +38,7 @@ Run the tests with `dotnet test SmpSample.slnx`. [See what was extracted and wha
 
 ## The original Windows prototype
 
-![Live cross-reference response in the original SMP Intelligence desktop app, with company part numbers blurred](assets/smp.chat.png?v=live-recording-3)
+![Live cross-reference response in the original SMP Intelligence desktop app, with company part numbers blurred](assets/smp.chat.png?v=live-recording-4)
 
 *A frame from the same live session. The original prototype uses OpenAI to propose a query and SQL Server to retrieve the records. The separately linked browser demo uses fictional data and an offline question planner.*
 
@@ -55,9 +55,9 @@ I built a conversational interface to bring those supported catalog lookups into
 3. Follow up: “what applications does it fit?”
 4. Review the table of vehicle applications and any fitment notes.
 
-This recorded session returned two matching parts and 117 vehicle application rows. These are the prototype's live results, with company part numbers blurred. The linked browser code sample uses its own fictional catalog and reference numbers.
+This recorded session returned two matching parts and 117 vehicle application rows. These are the prototype's live results, with company part numbers and vehicle-count values blurred. The linked browser code sample uses its own fictional catalog and reference numbers.
 
-![Live vehicle application results in SMP Intelligence, with company part numbers blurred](assets/smp.results.png?v=live-recording-3)
+![Live vehicle application results in SMP Intelligence, with company part numbers and vehicle counts blurred](assets/smp.results.png?v=live-recording-4)
 
 ## My contribution
 

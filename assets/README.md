@@ -2,7 +2,7 @@
 
 The main animation and screenshots come from a continuous screen recording of the installed SMP Intelligence Windows prototype on November 17, 2026. The original interface, company logo, and live responses are retained. This session used the prototype's OpenAI and SQL Server connection.
 
-Company part numbers are blurred after recording, including in the conversation, tables, and home-screen example. Internal usernames in the cross-reference table are also blurred. The input OE number `12692048` remains visible. The session returned two matching parts and 117 vehicle application rows.
+Company part numbers are blurred after recording, including in the conversation, tables, and home-screen example. Internal usernames in the cross-reference table and all visible Canada, Mexico, US, and VIO values in the applications table are also blurred. Column headings remain readable. The input OE number `12692048` remains visible. The session returned two matching parts and 117 vehicle application rows.
 
 - `smp-demo.gif`: normal-speed excerpts from the continuous recording: the typed OE lookup, matching-parts table, follow-up “what applications does it fit?”, and applications table.
 - `smp.chat.png`: a redacted frame showing the live cross-reference response.
