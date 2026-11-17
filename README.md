@@ -8,6 +8,26 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 **Built with:** C# · .NET 8 · WPF · SQL Server · OpenAI API
 
+## Try the runnable code sample
+
+The public sample lets you run parts lookups, follow up about vehicle fitment, inspect the SQL, and try queries the validator blocks. It includes C# source, a fictional catalog, and **105 automated test cases**.
+
+With the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) installed:
+
+```sh
+git clone https://github.com/Kuvelet/SMP-Intelligence.git
+cd SMP-Intelligence
+dotnet run --project sample/Smp.Sample.Web
+```
+
+Open **http://127.0.0.1:5080**. No company access, database installation or API key is required. The sample uses an explicitly labeled offline question planner and a real local SQLite database. The original prototype uses OpenAI and SQL Server.
+
+**[Run instructions and two-minute tour](sample/README.md)** · **[Start with the query validator](sample/Smp.Sample.Core/SqlGuard.cs)** · **[Browse the tests](sample/Smp.Sample.Tests)** · **[CI results](https://github.com/Kuvelet/SMP-Intelligence/actions/workflows/sample-ci.yml)**
+
+Run the tests with `dotnet test SmpSample.slnx`. [See what was extracted and what changed for the sample.](docs/sample-design.md)
+
+## The original Windows prototype
+
 ![SMP Intelligence showing a parts cross-reference conversation with synthetic records](assets/smp.chat.png)
 
 *The actual application interface, shown with fictional sample data and prepared responses. These screenshots illustrate the workflow; they are not live AI results. The contact footer is adapted for the portfolio.*
@@ -65,7 +85,9 @@ Technical details, tradeoffs, and limitations are explained in the [architecture
 
 ## Testing
 
-The existing automated test suite completed successfully on November 16, 2026:
+**Public sample:** run the 105 cases in this repository with `dotnet test SmpSample.slnx`. These include the 75 SQL validation cases below, plus checks of actual sample records, follow-ups, execution boundaries and HTTP responses. [Sample design and test scope](docs/sample-design.md)
+
+**Original prototype:** the existing automated test suite completed successfully on November 16, 2026:
 
 - **Passed 75 SQL validation test cases covering supported queries and prohibited operations.**
 - Checked that simultaneous requests receive the correct replies and respect usage limits.
@@ -84,7 +106,7 @@ A browser version with company sign-in is planned as a future development stage.
 
 ## About this case study
 
-This case study includes documentation and sample screenshots. Internal application source and company data are not included.
+This repository includes the case study, original-interface screenshots with fictional records, and a runnable public source-code sample. The query validator is adapted from the prototype; the sample interface, offline planner and SQLite fixture are separately implemented for public review. The complete internal application and company data are not included.
 
 Author: [Can Kuvelet](https://kuvelet.github.io/portfolio/)
 

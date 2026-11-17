@@ -1,0 +1,27 @@
+{
+  "provenance": "Entirely invented for this public sample. No rows were queried or copied from a company database. Prices and VIO values are illustrative only.",
+  "interchange": [
+    {"partNumber":"DEMO-PART-101","reference":"DEMO-OE-1001","price":32.5,"note":"Front brake pads; standard package"},
+    {"partNumber":"DEMO-PART-102","reference":"DEMO-OE-1001","price":44.0,"note":"Front brake pads; heavy-duty package. Check fitment."},
+    {"partNumber":"DEMO-PART-103","reference":"DEMO-OE-1002","price":29.0,"note":"Rear brake pads"},
+    {"partNumber":"DEMO-PART-104","reference":"DEMO-OE-1003","price":68.0,"note":"Front wheel bearing; left or right"},
+    {"partNumber":"DEMO-PART-105","reference":"DEMO-OE-1004","price":24.5,"note":"Ignition coil; gasoline engine"},
+    {"partNumber":"DEMO-PART-106","reference":"DEMO-OE-1005","price":37.0,"note":null},
+    {"partNumber":"DEMO-PART-107","reference":"DEMO-OE-1006","price":12.0,"note":"Cabin filter"},
+    {"partNumber":"DEMO-PART-108","reference":"DEMO-OE-1007","price":55.0,"note":"Catalog entry with no recorded vehicle applications"}
+  ],
+  "applications": [
+    {"part":"DEMO-PART-101","make":"Example Motors","model":"Model A","year":2020,"vio":1200},
+    {"part":"DEMO-PART-101","make":"Example Motors","model":"Model A","year":2021,"vio":1400},
+    {"part":"DEMO-PART-101","make":"Sample Auto","model":"Model B","year":2021,"vio":800},
+    {"part":"DEMO-PART-102","make":"Example Motors","model":"Model A HD","year":2021,"vio":300},
+    {"part":"DEMO-PART-102","make":"Example Motors","model":"Model A HD","year":2022,"vio":450},
+    {"part":"DEMO-PART-103","make":"Sample Auto","model":"Model B","year":2021,"vio":800},
+    {"part":"DEMO-PART-103","make":"Sample Auto","model":"Model B","year":2022,"vio":900},
+    {"part":"DEMO-PART-104","make":"Fictional Vehicles","model":"Model C","year":2019,"vio":500},
+    {"part":"DEMO-PART-104","make":"Fictional Vehicles","model":"Model C","year":2020,"vio":650},
+    {"part":"DEMO-PART-105","make":"Example Motors","model":"Model D","year":2023,"vio":700},
+    {"part":"DEMO-PART-106","make":"Sample Auto","model":"Model E","year":2022,"vio":250},
+    {"part":"DEMO-PART-107","make":"Fictional Vehicles","model":"Model C","year":2020,"vio":650}
+  ]
+}

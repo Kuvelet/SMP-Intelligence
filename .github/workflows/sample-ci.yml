@@ -1,0 +1,28 @@
+name: Runnable sample
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Restore pinned dependencies
+        run: dotnet restore SmpSample.slnx --locked-mode
+      - name: Test the public sample
+        run: dotnet test SmpSample.slnx --no-restore --configuration Release --verbosity normal

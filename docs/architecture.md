@@ -74,6 +74,10 @@ The manifest and release location remain part of the trust boundary. A checksum 
 | Local result presentation | Gives users inspectable database records | A natural-language interpretation can still be wrong |
 | Stored request and response traces | Supports debugging and transparent review | Records need deliberate access and retention decisions |
 
+## Public code sample
+
+The [runnable sample](../sample/README.md) extracts the query validator into a standalone C# application with an offline planner, fictional records, SQLite, and a local browser interface. Its scope and differences are documented in [sample design](sample-design.md). This is distinct from the proposed internal web application below.
+
 ## Proposed web evolution
 
 A future internal web application could replace the desktop transport with an authenticated HTTP API while retaining the separation between planning, validation, and execution. Company sign-in, authorization, a dedicated backend identity, and hosting would need to be implemented and tested.

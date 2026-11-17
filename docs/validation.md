@@ -1,5 +1,11 @@
 # Validation results and evaluation plan
 
+## Runnable public sample
+
+The repository now includes a separately runnable .NET 10 test suite: `dotnet test SmpSample.slnx`. It has 105 cases, including the prototype's 75 SQL validation fixtures with fictional identifiers and additional checks against actual in-memory sample records. [Sample design and limitations](sample-design.md)
+
+The [CI workflow](../.github/workflows/sample-ci.yml) runs this public suite on Windows, Linux and macOS. The historical run below covers the original internal prototype and includes features deliberately omitted from the portable sample.
+
 ## Observed offline run
 
 **Review date:** November 16, 2026  
