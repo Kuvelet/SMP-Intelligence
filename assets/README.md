@@ -14,3 +14,5 @@ Idle pauses are trimmed for the cover animation; typing and interaction footage 
 The separately linked browser code sample has a different interface and uses an offline question planner and fictional SQLite fixture. It does not connect to company systems or an AI service.
 
 The [two-minute technical walkthrough](https://kuvelet.github.io/portfolio/walkthrough/) combines this redacted app footage with a separately recorded live SQL inspection, exact public source excerpts, and the results of a local run of all 105 public tests on November 17, 2026. It preserves the same redactions and also blurs the internal physical table mapping in the SQL details. The video, captions, narration script, and watch page are hosted in the portfolio repository.
+
+The walkthrough now includes an AI-generated stock voice (Kokoro, Michael), normalized speech audio, and matching English subtitles and a transcript. The original redacted video stream is preserved without re-encoding. Voiceover production used [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M) locally; no company data or voice recording was uploaded for speech generation.

@@ -14,7 +14,7 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 *Recorded directly from the working Windows prototype, with the original logo and live responses. Company part numbers, internal usernames, and the Canada, Mexico, US, and VIO values are blurred. Idle pauses are trimmed; the remaining footage plays at normal speed.*
 
-**[Watch the two-minute technical walkthrough →](https://kuvelet.github.io/portfolio/walkthrough/)** — see the real app's proposed SQL, the public validator and execution pipeline, and the test that checks rejected plans make no database calls. Captioned video with chapters and an optional narration script.
+**[Watch the two-minute technical walkthrough →](https://kuvelet.github.io/portfolio/walkthrough/)** — see the real app's proposed SQL, the public validator and execution pipeline, and the test that checks rejected plans make no database calls. Narrated video with English captions, chapter navigation, and a transcript. The voiceover is AI-generated.
 
 ## Try the runnable code sample
 
