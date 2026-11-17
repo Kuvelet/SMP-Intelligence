@@ -10,9 +10,9 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 ## See the Windows interface
 
-![Original Windows interface showing an OE lookup and an applications follow-up with blurred part numbers](assets/smp-demo.gif?v=desktop-2)
+![Live SMP Intelligence recording showing an OE lookup and an applications follow-up with company part numbers blurred](assets/smp-demo.gif?v=live-recording-3)
 
-*Recorded walkthrough of the original WPF interface, shown as “Catalog Intelligence” with neutral branding, fictional records, and blurred part numbers. Responses are prepared for the capture; this is not a live AI session.*
+*Recorded directly from the working Windows prototype, with the original logo and live responses. Company part numbers and internal usernames are blurred. Idle pauses are trimmed; the remaining footage plays at normal speed.*
 
 ## Try the runnable code sample
 
@@ -38,9 +38,9 @@ Run the tests with `dotnet test SmpSample.slnx`. [See what was extracted and wha
 
 ## The original Windows prototype
 
-![Original desktop interface with neutral branding and a fictional cross-reference response](assets/smp.chat.png?v=desktop-2)
+![Live cross-reference response in the original SMP Intelligence desktop app, with company part numbers blurred](assets/smp.chat.png?v=live-recording-3)
 
-*The actual application interface with neutral portfolio branding, fictional data, and prepared responses. These screenshots illustrate the workflow; they are not live AI results.*
+*A frame from the same live session. The original prototype uses OpenAI to propose a query and SQL Server to retrieve the records. The separately linked browser demo uses fictional data and an offline question planner.*
 
 ## The problem
 
@@ -55,9 +55,9 @@ I built a conversational interface to bring those supported catalog lookups into
 3. Follow up: “what applications does it fit?”
 4. Review the table of vehicle applications and any fitment notes.
 
-The screenshots show this workflow using fictional parts and vehicles. The illustrated matches and applications are not verified fitment for OE 12692048. The linked browser code sample uses its own fictional reference numbers.
+This recorded session returned two matching parts and 117 vehicle application rows. These are the prototype's live results, with company part numbers blurred. The linked browser code sample uses its own fictional catalog and reference numbers.
 
-![Fictional vehicle applications in the original desktop interface, with part numbers blurred](assets/smp.results.png?v=desktop-2)
+![Live vehicle application results in SMP Intelligence, with company part numbers blurred](assets/smp.results.png?v=live-recording-3)
 
 ## My contribution
 
@@ -116,7 +116,7 @@ A browser version with company sign-in is planned as a future development stage.
 
 ## About this case study
 
-This repository includes the case study, original-interface screenshots with fictional records, and a runnable public source-code sample. The query validator is adapted from the prototype; the sample interface, offline planner and SQLite fixture are separately implemented for public review. The complete internal application and company data are not included.
+This repository includes the case study, a redacted recording of the original application, and a runnable public source-code sample with fictional data. The query validator is adapted from the prototype; the sample interface, offline planner and SQLite fixture are separately implemented for public review. The complete internal application and company database are not included.
 
 Author: [Can Kuvelet](https://kuvelet.github.io/portfolio/)
 

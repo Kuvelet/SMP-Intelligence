@@ -1,12 +1,14 @@
 # Interface screenshots and animation
 
-These assets render the original WPF interface from an isolated capture build. The public capture replaces the company logo, name in the interface, and contact footer with neutral “Catalog Intelligence” branding. Layout, tabs, conversation bubbles, and table controls come from the original client.
+The main animation and screenshots come from a continuous screen recording of the installed SMP Intelligence Windows prototype on November 17, 2026. The original interface, company logo, and live responses are retained. This session used the prototype's OpenAI and SQL Server connection.
 
-All result records and vehicle applications are fictional. The input OE number `12692048` is used at the author’s request; the illustrated matches and applications are not verified fitment for it. Returned part-number cells are blurred in the WPF rendering before frames are saved.
+Company part numbers are blurred after recording, including in the conversation, tables, and home-screen example. Internal usernames in the cross-reference table are also blurred. The input OE number `12692048` remains visible. The session returned two matching parts and 117 vehicle application rows.
 
-- `smp-demo.gif`: the typed OE lookup, matching-parts table, exact follow-up “what applications does it fit?”, and applications table.
-- `smp.chat.png`: the fictional cross-reference response.
-- `smp.results.png`: the fictional applications table with blurred part numbers.
-- `smp.sql.png`: a clearly labeled illustrative query in the original query-inspection tab.
+- `smp-demo.gif`: normal-speed excerpts from the continuous recording: the typed OE lookup, matching-parts table, follow-up “what applications does it fit?”, and applications table.
+- `smp.chat.png`: a redacted frame showing the live cross-reference response.
+- `smp.results.png`: a redacted frame showing the live applications table.
+- `smp.sql.png`: an earlier, separately prepared illustration with a fictional query and neutral branding. It is not a frame from this recording.
 
-The animation uses prepared responses and does not call a production database or an AI service. Frame timing is edited for a roughly 16-second loop, not a response-time benchmark. The separately linked browser code sample has a different interface and uses its own offline question planner and SQLite fixture.
+Idle pauses are trimmed for the cover animation; typing and interaction footage remain at normal speed. The animation is a workflow demonstration, not a response-time benchmark. The raw recording is not published.
+
+The separately linked browser code sample has a different interface and uses an offline question planner and fictional SQLite fixture. It does not connect to company systems or an AI service.
