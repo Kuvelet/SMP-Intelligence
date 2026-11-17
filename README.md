@@ -8,13 +8,15 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 **Built with:** C# · .NET 8 · WPF · SQL Server · OpenAI API
 
+## See the Windows interface
+
+![Original Windows interface showing an OE lookup and an applications follow-up with blurred part numbers](assets/smp-demo.gif?v=desktop-2)
+
+*Recorded walkthrough of the original WPF interface, shown as “Catalog Intelligence” with neutral branding, fictional records, and blurred part numbers. Responses are prepared for the capture; this is not a live AI session.*
+
 ## Try the runnable code sample
 
 **[Open the live demo →](https://kuvelet.github.io/SMP-Intelligence/)** — no installation, sign-in or API key. Try a reference lookup, follow up about vehicles, or test a blocked SQL query.
-
-![Animated guided sample showing a typed parts lookup and vehicle follow-up](assets/smp-demo.gif)
-
-*Guided browser sample with fictional records and the offline question planner.*
 
 The public sample lets you run parts lookups, follow up about vehicle fitment, inspect the SQL, and try queries the validator blocks. It includes C# source, a fictional catalog, and **105 automated test cases**.
 
@@ -36,9 +38,9 @@ Run the tests with `dotnet test SmpSample.slnx`. [See what was extracted and wha
 
 ## The original Windows prototype
 
-![SMP Intelligence showing a parts cross-reference conversation with synthetic records](assets/smp.chat.png)
+![Original desktop interface with neutral branding and a fictional cross-reference response](assets/smp.chat.png?v=desktop-2)
 
-*The actual application interface, shown with fictional sample data and prepared responses. These screenshots illustrate the workflow; they are not live AI results. The contact footer is adapted for the portfolio.*
+*The actual application interface with neutral portfolio branding, fictional data, and prepared responses. These screenshots illustrate the workflow; they are not live AI results.*
 
 ## The problem
 
@@ -48,14 +50,14 @@ I built a conversational interface to bring those supported catalog lookups into
 
 ## A typical workflow
 
-1. Ask: “Which parts match reference number DEMO-OE-1001?”
-2. Review the matching part numbers.
-3. Follow up: “Which vehicles do these parts fit?”
+1. Ask: “What parts do we have that cross to OE number 12692048?”
+2. Review the matching parts table. Part numbers are blurred in the public capture.
+3. Follow up: “what applications does it fit?”
 4. Review the table of vehicle applications and any fitment notes.
 
-The screenshots show this workflow using fictional parts and vehicles.
+The screenshots show this workflow using fictional parts and vehicles. The illustrated matches and applications are not verified fitment for OE 12692048. The linked browser code sample uses its own fictional reference numbers.
 
-![Vehicle application records displayed in the actual desktop interface](assets/smp.results.png)
+![Fictional vehicle applications in the original desktop interface, with part numbers blurred](assets/smp.results.png?v=desktop-2)
 
 ## My contribution
 
