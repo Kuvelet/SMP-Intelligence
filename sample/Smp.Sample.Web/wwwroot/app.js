@@ -44,6 +44,8 @@ function renderTables(target, tables) {
 }
 
 async function post(path, body) {
+  // The hosted demo runs the same C# pipeline in WebAssembly, without an API server.
+  if (window.smpBrowserRequest) return window.smpBrowserRequest(path, body);
   const response = await fetch(path, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
   const data = await response.json();
   if (!response.ok) throw Object.assign(new Error(data.message || 'The request could not be processed.'), {data});

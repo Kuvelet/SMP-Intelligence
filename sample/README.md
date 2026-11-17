@@ -1,5 +1,7 @@
 # Run the sample
 
+**[Try it online](https://kuvelet.github.io/SMP-Intelligence/)** to use the demo immediately. No installation or account is required. The instructions below are for running and developing the local server version.
+
 This is a small C# application you can run and inspect. It uses a fictional automotive catalog, a validator extracted from SMP Intelligence, a local SQLite database, and a browser interface.
 
 **You need:** the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) and a browser. Windows, macOS and Linux are supported by the sample. No SQL Server installation, company connection, API key or paid service is required. The first restore downloads packages from NuGet; normal sample use makes no external service calls.
@@ -68,3 +70,5 @@ The local executor intentionally excludes subqueries, set operations, TOP, windo
 `Price` and `VIO` are fictional numeric values. VIO means vehicles in operation in the original domain. The sample values must not be summed as a unique fleet total: different parts can apply to the same vehicles. The two-table sample is deliberately smaller and more strongly typed than the original imported catalog.
 
 [Design decisions and differences from the prototype](../docs/sample-design.md)
+
+[Browser build and GitHub Pages deployment](../docs/live-demo.md)

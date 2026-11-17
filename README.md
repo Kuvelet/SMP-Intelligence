@@ -10,9 +10,13 @@ SMP Intelligence is a Windows application that helps users find matching part nu
 
 ## Try the runnable code sample
 
+**[Open the live demo →](https://kuvelet.github.io/SMP-Intelligence/)** — no installation, sign-in or API key. Try a reference lookup, follow up about vehicles, or test a blocked SQL query.
+
 The public sample lets you run parts lookups, follow up about vehicle fitment, inspect the SQL, and try queries the validator blocks. It includes C# source, a fictional catalog, and **105 automated test cases**.
 
-With the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) installed:
+The hosted version runs the same C# planning and validation source inside the browser using WebAssembly, with a browser-local SQLite database. Questions and results stay in that browser. Its question planner is explicitly offline; it is not a live AI service. [How the live demo is built](docs/live-demo.md)
+
+To run the local server version yourself, install the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0), then:
 
 ```sh
 git clone https://github.com/Kuvelet/SMP-Intelligence.git

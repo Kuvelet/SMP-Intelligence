@@ -7,3 +7,4 @@ TestResults/
 *.db-*
 .env
 artifacts/
+sample/Smp.Sample.Browser/wwwroot/
